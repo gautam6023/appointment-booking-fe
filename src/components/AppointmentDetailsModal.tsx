@@ -6,7 +6,7 @@ import { useDeleteAppointment } from "../api/appointments";
 import { toast } from "sonner";
 import { Button } from "./ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "./ui/dialog";
-import DeleteConfirmationModal from "./DeleteConfirmationModal";
+import DeleteConfirmationModal from "./modals/DeleteConfirmationModal";
 
 interface AppointmentDetailsModalProps {
   isOpen: boolean;
