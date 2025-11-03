@@ -1,7 +1,7 @@
 import axios, { type AxiosError } from "axios";
 
 // Get API base URL from environment or use default
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001/api";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // Create axios instance with default configuration
 export const axiosInstance = axios.create({
@@ -32,12 +32,12 @@ axiosInstance.interceptors.response.use(
   },
   (error: AxiosError) => {
     // Any status codes outside the range of 2xx trigger this function
-    
+
     // Handle specific error cases
     if (error.response) {
       // Server responded with error status
       const status = error.response.status;
-      
+
       switch (status) {
         case 401:
           // Unauthorized - could redirect to login or clear auth state
@@ -65,10 +65,9 @@ axiosInstance.interceptors.response.use(
       // Something else happened
       console.error("Request failed:", error.message);
     }
-    
+
     return Promise.reject(error);
   }
 );
 
 export default axiosInstance;
-

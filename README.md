@@ -1,28 +1,7 @@
-# BirdChime - Appointment Booking System (Frontend)
-
-A modern, full-featured appointment booking system built with React, TypeScript, and Vite. BirdChime provides an intuitive interface for scheduling and managing appointments with a clean, responsive design.
-
-## 🚀 Features
-
-### Core Functionality
-- **📅 Weekly Calendar View** - Visual calendar displaying available time slots for booking
-- **🎯 Smart Scheduling** - Fixed working days (Monday-Friday) with 30-minute time slots
-- **👥 Multi-Guest Support** - Add multiple guests to appointments with email validation
-- **✏️ Full CRUD Operations** - Create, view, edit, reschedule, and delete appointments
-- **🔍 Advanced Filtering** - Filter appointments by upcoming/past with pagination
-- **🔗 Shareable Links** - Public calendar view for easy booking via unique URLs
-
-### Technical Features
-- **🔐 Authentication** - Secure login/register with JWT-based auth
-- **⚡ React Query** - Optimized data fetching and caching
-- **📱 Responsive Design** - Mobile-first design with Tailwind CSS
-- **🎨 Modern UI** - Clean interface with shadcn/ui components
-- **🛡️ Type Safety** - Full TypeScript implementation
-- **🏗️ Modular Architecture** - Component-based design for maintainability
-
 ## 📋 Prerequisites
 
 Before you begin, ensure you have the following installed:
+
 - **Node.js** (v18.0.0 or higher)
 - **npm** or **yarn** or **pnpm**
 - **Backend API** running (see backend repository)
@@ -61,8 +40,7 @@ Update the `.env` file with your configuration:
 VITE_API_BASE_URL=http://localhost:3001/api
 
 # Application Configuration
-VITE_APP_NAME=BirdChime
-VITE_APP_ENV=development
+
 ```
 
 **Important:** Make sure the `VITE_API_BASE_URL` matches the URL where your backend API is running.
@@ -176,11 +154,14 @@ fe/
 ## 🏢 Application Pages
 
 ### Public Pages
+
 1. **Login** (`/login`)
+
    - User authentication
    - Redirects to dashboard on success
 
 2. **Register** (`/register`)
+
    - New user registration
    - Email, name, and password required
 
@@ -190,7 +171,9 @@ fe/
    - Accessible via unique sharable link
 
 ### Protected Pages (Requires Authentication)
+
 1. **Dashboard** (`/dashboard`)
+
    - Overview of your account
    - Quick access to calendar and appointments
    - Display sharable booking link
@@ -206,6 +189,7 @@ fe/
 ## ⏰ Booking System Details
 
 ### Working Days & Hours
+
 - **Working Days**: Monday to Friday
 - **Working Hours**: 9:00 AM - 5:00 PM
 - **Weekend**: Saturday and Sunday (Not Available)
@@ -213,6 +197,7 @@ fe/
 - **Slots per Day**: 16 slots (8 hours × 2 slots/hour)
 
 ### Slot Configuration
+
 ```
 Monday - Friday:
 09:00 - 09:30
@@ -234,9 +219,10 @@ Monday - Friday:
 ```
 
 ### Appointment Features
+
 - **Primary Booker**: Name, email (required), phone (optional)
 - **Additional Guests**: Up to unlimited guests via email
-- **Guest Validation**: 
+- **Guest Validation**:
   - Email format validation
   - No duplicate guests
   - Guest email cannot match primary email
@@ -249,6 +235,7 @@ Monday - Friday:
   - Cancel/Delete appointment
 
 ### Calendar Navigation
+
 - **View**: Week-by-week navigation
 - **Navigation**: Previous/Next week buttons
 - **Current Week**: Displayed date range
@@ -260,6 +247,7 @@ Monday - Friday:
 ## 🎨 UI Components
 
 ### Component Library
+
 - **Base Components**: shadcn/ui (Radix UI)
 - **Styling**: Tailwind CSS
 - **Icons**: Lucide React
@@ -268,6 +256,7 @@ Monday - Friday:
 - **Dialogs/Drawers**: Radix UI Primitives
 
 ### Design System
+
 - **Colors**: Blue primary, Gray neutrals
 - **Typography**: System font stack
 - **Spacing**: Tailwind spacing scale
@@ -279,6 +268,7 @@ Monday - Friday:
 ## 🔧 Development Tools
 
 ### Available Scripts
+
 ```bash
 npm run dev          # Start development server
 npm run build        # Build for production
@@ -288,6 +278,7 @@ npm run type-check   # Run TypeScript compiler check
 ```
 
 ### Code Quality
+
 - **ESLint**: JavaScript/TypeScript linting
 - **TypeScript**: Type checking
 - **Prettier**: Code formatting (if configured)
@@ -295,26 +286,30 @@ npm run type-check   # Run TypeScript compiler check
 ## 🏗️ Architecture
 
 ### State Management
+
 - **React Query**: Server state (API data)
 - **React Context**: Auth state
 - **Component State**: Local UI state
 
 ### API Communication
+
 - **HTTP Client**: Axios
 - **Base URL**: Configured via environment variables
 - **Authentication**: Cookie-based with credentials
 - **Error Handling**: Centralized error handlers
 
 ### Routing
+
 - **Router**: React Router v6
 - **Route Protection**: Custom ProtectedRoute component
 - **Public Routes**: Login, Register, Public Calendar
 - **Private Routes**: Dashboard, Appointments
 
 ### Data Flow
+
 ```
-User Action → React Query Mutation → API Call → 
-Backend Processing → Response → Cache Update → 
+User Action → React Query Mutation → API Call →
+Backend Processing → Response → Cache Update →
 UI Re-render → User Feedback (Toast)
 ```
 
@@ -330,19 +325,22 @@ UI Re-render → User Feedback (Toast)
 ## 🚀 Deployment
 
 ### Environment Variables for Production
+
 ```env
 VITE_API_BASE_URL=https://your-api-domain.com/api
-VITE_APP_NAME=BirdChime
-VITE_APP_ENV=production
+
+
 ```
 
 ### Build Steps
+
 1. Set production environment variables
 2. Run `npm run build`
 3. Deploy `dist` folder to hosting service
 4. Configure hosting for SPA routing
 
 ### Hosting Options
+
 - Vercel (Recommended)
 - Netlify
 - AWS S3 + CloudFront
@@ -352,6 +350,7 @@ VITE_APP_ENV=production
 ## 🤝 Contributing
 
 ### Best Practices
+
 - Follow the existing code structure
 - Write TypeScript types for new features
 - Use React Query for API calls
@@ -361,6 +360,7 @@ VITE_APP_ENV=production
 - Test thoroughly before committing
 
 ### Code Style
+
 - Use functional components with hooks
 - Prefer named exports for components
 - Use TypeScript interfaces for props
@@ -376,21 +376,25 @@ This project is licensed under the MIT License.
 ### Common Issues
 
 **Issue**: Cannot connect to API
+
 - **Solution**: Verify `VITE_API_BASE_URL` in `.env` is correct
 - **Solution**: Ensure backend server is running
 - **Solution**: Check CORS configuration on backend
 
 **Issue**: Build fails
+
 - **Solution**: Run `npm install` to ensure all dependencies are installed
 - **Solution**: Check Node.js version (must be v18+)
 - **Solution**: Clear node_modules and reinstall: `rm -rf node_modules && npm install`
 
 **Issue**: Hot reload not working
+
 - **Solution**: Restart development server
 - **Solution**: Clear browser cache
 - **Solution**: Check if port 5173 is available
 
 **Issue**: TypeScript errors
+
 - **Solution**: Run `npm run type-check` to see all errors
 - **Solution**: Ensure all dependencies are installed
 - **Solution**: Check tsconfig.json configuration

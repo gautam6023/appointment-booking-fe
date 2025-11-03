@@ -1,9 +1,9 @@
-import { Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
-import { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
-import { Button } from './ui/button';
-import { Menu, X, LogOut, Calendar, LayoutDashboard, CalendarCheck } from 'lucide-react';
-import { toast } from 'sonner';
+import { Outlet, useNavigate, useLocation, Link } from "react-router-dom";
+import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { Button } from "./ui/button";
+import { Menu, X, LogOut, Calendar, LayoutDashboard, CalendarCheck } from "lucide-react";
+import { toast } from "sonner";
 
 export default function Layout() {
   const { user, logout } = useAuth();
@@ -14,16 +14,16 @@ export default function Layout() {
   const handleLogout = async () => {
     try {
       await logout();
-      toast.success('Logged out successfully');
-      navigate('/login');
+      toast.success("Logged out successfully");
+      navigate("/login");
     } catch (error) {
-      toast.error('Failed to logout');
+      toast.error("Failed to logout");
     }
   };
 
   const navLinks = [
-    { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { to: '/appointments', label: 'Appointments', icon: CalendarCheck },
+    { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+    { to: "/appointments", label: "Appointments", icon: CalendarCheck },
   ];
 
   return (
@@ -33,10 +33,12 @@ export default function Layout() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo/Brand */}
-            <div className="flex items-center space-x-2">
-              <Calendar className="h-6 w-6 text-blue-600" />
-              <span className="text-xl font-bold text-gray-900">BirdChime</span>
-            </div>
+            <Link to={user?.email ? "/dashboard" : "/login"}>
+              <div className="flex items-center space-x-2">
+                <Calendar className="h-6 w-6 text-blue-600" />
+                <span className="text-xl font-bold text-gray-900">BirdChime</span>
+              </div>
+            </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-6">
@@ -50,9 +52,7 @@ export default function Layout() {
                       key={link.to}
                       to={link.to}
                       className={`flex items-center space-x-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                        isActive
-                          ? 'bg-blue-50 text-blue-700'
-                          : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                        isActive ? "bg-blue-50 text-blue-700" : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                       }`}
                     >
                       <Icon className="h-4 w-4" />
@@ -69,12 +69,7 @@ export default function Layout() {
                   <span className="mx-2">•</span>
                   <span>{user?.email}</span>
                 </div>
-                <Button
-                  onClick={handleLogout}
-                  variant="outline"
-                  size="sm"
-                  className="flex items-center space-x-2"
-                >
+                <Button onClick={handleLogout} variant="outline" size="sm" className="flex items-center space-x-2">
                   <LogOut className="h-4 w-4" />
                   <span>Logout</span>
                 </Button>
@@ -83,15 +78,8 @@ export default function Layout() {
 
             {/* Mobile menu button */}
             <div className="md:hidden">
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="text-gray-600 hover:text-gray-900 p-2"
-              >
-                {mobileMenuOpen ? (
-                  <X className="h-6 w-6" />
-                ) : (
-                  <Menu className="h-6 w-6" />
-                )}
+              <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-gray-600 hover:text-gray-900 p-2">
+                {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
             </div>
           </div>
@@ -112,9 +100,7 @@ export default function Layout() {
                       to={link.to}
                       onClick={() => setMobileMenuOpen(false)}
                       className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                        isActive
-                          ? 'bg-blue-50 text-blue-700'
-                          : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                        isActive ? "bg-blue-50 text-blue-700" : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                       }`}
                     >
                       <Icon className="h-4 w-4" />
@@ -133,12 +119,7 @@ export default function Layout() {
               </div>
 
               {/* Logout Button */}
-              <Button
-                onClick={handleLogout}
-                variant="outline"
-                size="sm"
-                className="w-full flex items-center justify-center space-x-2"
-              >
+              <Button onClick={handleLogout} variant="outline" size="sm" className="w-full flex items-center justify-center space-x-2">
                 <LogOut className="h-4 w-4" />
                 <span>Logout</span>
               </Button>
@@ -154,4 +135,3 @@ export default function Layout() {
     </div>
   );
 }
-
